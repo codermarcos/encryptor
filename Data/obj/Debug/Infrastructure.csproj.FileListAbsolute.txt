@@ -1,0 +1,4 @@
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Data\bin\Debug\Data.dll
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Data\bin\Debug\Data.pdb
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Data\obj\Debug\Data.dll
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Data\obj\Debug\Data.pdb

@@ -1,0 +1,13 @@
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\bin\Debug\Encryptor.exe.config
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\bin\Debug\Encryptor.exe
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\bin\Debug\Encryptor.pdb
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\obj\Debug\Encryptor.csprojResolveAssemblyReference.cache
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\obj\Debug\Encryptor.Index.resources
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\obj\Debug\Encryptor.Properties.Resources.resources
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\obj\Debug\Encryptor.csproj.GenerateResource.Cache
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\obj\Debug\Encryptor.exe
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\obj\Debug\Encryptor.pdb
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\obj\Debug\Encryptor.Views.criptografias.hashFrm.resources
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\obj\Debug\Encryptor.Views.Shared.Header.resources
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\bin\Debug\Logic.dll
+C:\Users\Marcos\Desktop\Fat Wolf\Encryptor\Encryptor\bin\Debug\Logic.pdb
