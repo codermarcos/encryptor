@@ -68,11 +68,35 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\conclusao\ConclusaoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\conclusao\ConclusaoFrm.Designer.cs">
+      <DependentUpon>ConclusaoFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\criptografias\SimetricasFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\criptografias\SimetricasFrm.Designer.cs">
+      <DependentUpon>SimetricasFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\criptografias\AssimitricasFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\criptografias\AssimitricasFrm.Designer.cs">
+      <DependentUpon>AssimitricasFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\criptografias\HashFrm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\criptografias\HashFrm.Designer.cs">
       <DependentUpon>HashFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\grupo\ConclusaoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\grupo\ConclusaoFrm.Designer.cs">
+      <DependentUpon>ConclusaoFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\Header.cs">
       <SubType>UserControl</SubType>
@@ -85,8 +109,20 @@
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\conclusao\ConclusaoFrm.resx">
+      <DependentUpon>ConclusaoFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\criptografias\SimetricasFrm.resx">
+      <DependentUpon>SimetricasFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\criptografias\AssimitricasFrm.resx">
+      <DependentUpon>AssimitricasFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\criptografias\HashFrm.resx">
       <DependentUpon>HashFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\grupo\ConclusaoFrm.resx">
+      <DependentUpon>ConclusaoFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\Header.resx">
       <DependentUpon>Header.cs</DependentUpon>
@@ -141,6 +177,7 @@
       <Name>Logic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

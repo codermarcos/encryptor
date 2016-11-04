@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Encryptor.Views.conclusao;
 using Encryptor.Views.criptografias;
+using Encryptor.Views.grupo;
 
 namespace Encryptor.Views.Shared
 {
@@ -17,16 +19,46 @@ namespace Encryptor.Views.Shared
         private Point _point;
         private bool _dragging;
 
-
-        private void hashBtn_Click(object sender, EventArgs e)
-        {
-            _parent.Dispose();
-            new HashFrm().Show(); 
-        }
         private void Header_Load(object sender, EventArgs e)
         {
             _parent = ParentForm;
         }
+
+        #region grupo
+        private void CallGrupoFrm(object sender, EventArgs e)
+        {
+            _parent.Dispose();
+            new GrupoFrm().Show();
+        }
+        #endregion
+
+        #region conclusao
+        private void CallConclusaoFrm(object sender, EventArgs e)
+        {
+            _parent.Dispose();
+            new ConclusaoFrm().Show();
+        }
+        #endregion
+
+        #region cryptografias
+        private void CallAssimetricasFrm(object sender, EventArgs e)
+        {
+            _parent.Dispose();
+            new AssimetricasFrm().Show();
+        }
+
+        private void CallSimetricasFrm(object sender, EventArgs e)
+        {
+            _parent.Dispose();
+            new SimetricasFrm().Show();
+        }
+
+        private void CallHashFrm(object sender, EventArgs e)
+        {
+            _parent.Dispose();
+            new HashFrm().Show(); 
+        }
+        #endregion
 
         #region HEAD
         private void head_MouseDown(object sender, MouseEventArgs e)
@@ -52,7 +84,6 @@ namespace Encryptor.Views.Shared
         {
             _parent.WindowState = FormWindowState.Minimized;
         }
-
         #endregion
     }
 }
