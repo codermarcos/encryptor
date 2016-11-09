@@ -1,36 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic
 {
-    public class File
+    public class File : IDisposable
     {
-        private string ReadHex(string file)
+        private readonly string _caminho;
+        public File(string caminho)
         {
-            using (var reader = new BinaryReader(new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.None)))
-            {
-                reader.BaseStream.Position = 0x0;
-                var bytes = reader.ReadBytes(0x10); 
-                return BitConverter.ToString(bytes);
-            };
+            _caminho = caminho;
         }
-        public static string Read(string caminho, string file)
+
+        public string Read()
         {
-            using (var reader = new StreamReader(caminho))
+            using (var reader = new StreamReader(_caminho))
             {
                 return reader.ReadToEnd();
             };
         }
-        public static void Write(string file)
+        public void Write(string text)
         {
-            using (var writer = new StreamWriter(file))
+            using (var writer = new StreamWriter(_caminho))
             {
-                writer.Write(file);
+                writer.Write(text);
             };
+        }
+
+        public string ToBin()
+        {
+            return Read().Aggregate(string.Empty, (current, c) => current + Convert.ToString((int) c, 2));
+        }
+        public string ToHex()
+        {
+            return Read().Aggregate(string.Empty, (current, c) => current + ((int)c).ToString("X"));
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }

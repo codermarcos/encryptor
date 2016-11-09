@@ -8,15 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic;
+using Logic.Criptographys;
 
 namespace Encryptor.Views.criptografias
 {
-    public partial class HashFrm : Form
+    public partial class hashFrm : Form
     {
-        public HashFrm()
+        public hashFrm()
         {
             InitializeComponent();
         }
+
+        private string _content;
+        private string _file;
 
         private void openBtn_Click(object sender, EventArgs e)
         {
@@ -29,11 +33,34 @@ namespace Encryptor.Views.criptografias
             {
                 if (dialog.ShowDialog() != DialogResult.Cancel)
                 {
-                    var file = dialog.FileName;
-                    MessageBox.Show(File.Read(file,file.Split('.').Last()).ToString());
+                    using (var file = new File(dialog.FileName))
+                    {
+                        _file = dialog.SafeFileName;
+                        _content = file.ToHex();
+                    }
                 }
             }
             
         }
+
+        private void salvarBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_content))return;
+            using (var dialog = new SaveFileDialog()
+            {
+                Title = @"Onde deseja salvar o arquivo!",
+                Filter = @"Encryptor |*.crp",
+                FileName = _file
+            })
+            {
+                if (dialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    using (var file = new File(dialog.FileName))
+                    {   
+                        file.Write(_content);
+                    }
+                }
+            }
+        }        
     }
 }

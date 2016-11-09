@@ -255,9 +255,7 @@
 
         }
 
-        #endregion
-
-        private System.Windows.Forms.Panel header;
+        #endregion        
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMin;
         private System.Windows.Forms.Button btnExit;

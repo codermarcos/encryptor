@@ -56,7 +56,7 @@ namespace Encryptor.Views.Shared
         private void CallHashFrm(object sender, EventArgs e)
         {
             _parent.Dispose();
-            new HashFrm().Show(); 
+            new hashFrm().Show(); 
         }
         #endregion
 

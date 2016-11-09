@@ -29,8 +29,10 @@ namespace Encryptor.Views.criptografias
             {
                 if (dialog.ShowDialog() != DialogResult.Cancel)
                 {
-                    var file = dialog.FileName;
-                    MessageBox.Show(File.Read(file,file.Split('.').Last()).ToString());
+                    using (var file = new File(dialog.FileName))
+                    {
+                        MessageBox.Show(file.ToHex());
+                    }
                 }
             }
             

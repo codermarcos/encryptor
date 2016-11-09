@@ -2,7 +2,7 @@
 
 namespace Encryptor.Views.criptografias
 {
-    partial class HashFrm
+    partial class hashFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace Encryptor.Views.criptografias
             this.header1 = new Encryptor.Views.Shared.Header();
             this.label1 = new System.Windows.Forms.Label();
             this.openBtn = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.closeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // header1
@@ -66,21 +66,29 @@ namespace Encryptor.Views.criptografias
             this.openBtn.UseVisualStyleBackColor = true;
             this.openBtn.Click += new System.EventHandler(this.openBtn_Click);
             // 
-            // openFileDialog1
+            // closeBtn
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.closeBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closeBtn.Location = new System.Drawing.Point(298, 257);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(135, 55);
+            this.closeBtn.TabIndex = 3;
+            this.closeBtn.Text = "SALVAR";
+            this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.salvarBtn_Click);
             // 
-            // HashFrm
+            // hashFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(720, 720);
+            this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.openBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.header1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "HashFrm";
+            this.Name = "hashFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -92,6 +100,6 @@ namespace Encryptor.Views.criptografias
         private Header header1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button openBtn;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button closeBtn;
     }
 }
