@@ -32,12 +32,15 @@ namespace Encryptor.Views.criptografias
         {
             this.header = new Encryptor.Views.Shared.Header();
             this.labelHASH = new System.Windows.Forms.Label();
-            this.openBtn = new System.Windows.Forms.Button();
-            this.closeBtn = new System.Windows.Forms.Button();
+            this.criptografarBtn = new System.Windows.Forms.Button();
             this.rMD5 = new System.Windows.Forms.RadioButton();
             this.rSHA1 = new System.Windows.Forms.RadioButton();
             this.rSHA152 = new System.Windows.Forms.RadioButton();
             this.hashCriptographys = new System.Windows.Forms.GroupBox();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.clearBtn = new System.Windows.Forms.Button();
+            this.outputLbl = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.hashCriptographys.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,33 +63,22 @@ namespace Encryptor.Views.criptografias
             this.labelHASH.TabIndex = 1;
             this.labelHASH.Text = "HASH";
             // 
-            // openBtn
+            // criptografarBtn
             // 
-            this.openBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openBtn.Location = new System.Drawing.Point(432, 112);
-            this.openBtn.Name = "openBtn";
-            this.openBtn.Size = new System.Drawing.Size(135, 55);
-            this.openBtn.TabIndex = 2;
-            this.openBtn.Text = "ABRIR";
-            this.openBtn.UseVisualStyleBackColor = true;
-            this.openBtn.Click += new System.EventHandler(this.openBtn_Click);
-            // 
-            // closeBtn
-            // 
-            this.closeBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeBtn.Location = new System.Drawing.Point(573, 112);
-            this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(135, 55);
-            this.closeBtn.TabIndex = 3;
-            this.closeBtn.Text = "SALVAR";
-            this.closeBtn.UseVisualStyleBackColor = true;
-            this.closeBtn.Click += new System.EventHandler(this.salvarBtn_Click);
+            this.criptografarBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.criptografarBtn.Location = new System.Drawing.Point(381, 102);
+            this.criptografarBtn.Name = "criptografarBtn";
+            this.criptografarBtn.Size = new System.Drawing.Size(105, 40);
+            this.criptografarBtn.TabIndex = 3;
+            this.criptografarBtn.Text = "ABRIR";
+            this.criptografarBtn.UseVisualStyleBackColor = true;
+            this.criptografarBtn.Click += new System.EventHandler(this.OpenFile);
             // 
             // rMD5
             // 
             this.rMD5.AutoSize = true;
             this.rMD5.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rMD5.Location = new System.Drawing.Point(6, 27);
+            this.rMD5.Location = new System.Drawing.Point(17, 34);
             this.rMD5.Name = "rMD5";
             this.rMD5.Size = new System.Drawing.Size(61, 26);
             this.rMD5.TabIndex = 4;
@@ -99,7 +91,7 @@ namespace Encryptor.Views.criptografias
             // 
             this.rSHA1.AutoSize = true;
             this.rSHA1.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rSHA1.Location = new System.Drawing.Point(162, 27);
+            this.rSHA1.Location = new System.Drawing.Point(132, 34);
             this.rSHA1.Name = "rSHA1";
             this.rSHA1.Size = new System.Drawing.Size(66, 26);
             this.rSHA1.TabIndex = 5;
@@ -112,7 +104,7 @@ namespace Encryptor.Views.criptografias
             // 
             this.rSHA152.AutoSize = true;
             this.rSHA152.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rSHA152.Location = new System.Drawing.Point(323, 27);
+            this.rSHA152.Location = new System.Drawing.Point(252, 34);
             this.rSHA152.Name = "rSHA152";
             this.rSHA152.Size = new System.Drawing.Size(84, 26);
             this.rSHA152.TabIndex = 6;
@@ -129,10 +121,52 @@ namespace Encryptor.Views.criptografias
             this.hashCriptographys.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hashCriptographys.Location = new System.Drawing.Point(12, 102);
             this.hashCriptographys.Name = "hashCriptographys";
-            this.hashCriptographys.Size = new System.Drawing.Size(414, 64);
+            this.hashCriptographys.Size = new System.Drawing.Size(353, 80);
             this.hashCriptographys.TabIndex = 7;
             this.hashCriptographys.TabStop = false;
             this.hashCriptographys.Text = "Selecione qual hash :";
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveBtn.Location = new System.Drawing.Point(603, 102);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(105, 40);
+            this.saveBtn.TabIndex = 8;
+            this.saveBtn.Text = "SALVAR";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.Salvar);
+            // 
+            // clearBtn
+            // 
+            this.clearBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearBtn.Location = new System.Drawing.Point(492, 102);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(105, 40);
+            this.clearBtn.TabIndex = 9;
+            this.clearBtn.Text = "LIMPAR";
+            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.Limpar);
+            // 
+            // outputLbl
+            // 
+            this.outputLbl.AutoSize = true;
+            this.outputLbl.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLbl.Location = new System.Drawing.Point(12, 189);
+            this.outputLbl.Name = "outputLbl";
+            this.outputLbl.Size = new System.Drawing.Size(0, 20);
+            this.outputLbl.TabIndex = 10;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(381, 148);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(327, 40);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "CRIPTOGRAFAR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Criptografar);
             // 
             // HashFrm
             // 
@@ -140,9 +174,12 @@ namespace Encryptor.Views.criptografias
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(720, 720);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.outputLbl);
+            this.Controls.Add(this.clearBtn);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.hashCriptographys);
-            this.Controls.Add(this.closeBtn);
-            this.Controls.Add(this.openBtn);
+            this.Controls.Add(this.criptografarBtn);
             this.Controls.Add(this.labelHASH);
             this.Controls.Add(this.header);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -159,11 +196,14 @@ namespace Encryptor.Views.criptografias
 
         private Header header;
         private System.Windows.Forms.Label labelHASH;
-        private System.Windows.Forms.Button openBtn;
-        private System.Windows.Forms.Button closeBtn;
+        private System.Windows.Forms.Button criptografarBtn;
         private System.Windows.Forms.RadioButton rMD5;
         private System.Windows.Forms.RadioButton rSHA1;
         private System.Windows.Forms.RadioButton rSHA152;
         private System.Windows.Forms.GroupBox hashCriptographys;
+        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.Label outputLbl;
+        private System.Windows.Forms.Button button1;
     }
 }

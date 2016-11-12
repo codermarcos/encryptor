@@ -6,24 +6,34 @@ namespace Logic
 {
     public class File : IDisposable
     {
-        private readonly string _caminho;
-        public File(string caminho)
+        public string Name { get; set; }
+        public string Path { get; set; }
+        public string Content { get; set; }
+
+        public File(string path)
         {
-            _caminho = caminho;
+            Path = path;
+            Name = GetName();
+        }
+
+        private string GetName()
+        {
+            return Path.Substring(Path.LastIndexOf('\\') + 1, Path.Length - Path.LastIndexOf('\\') - 1);
         }
 
         public string Read()
         {
-            using (var reader = new StreamReader(_caminho))
+            using (var reader = new StreamReader(Path))
             {
-                return reader.ReadToEnd();
+                Content = reader.ReadToEnd();
+                return Content;
             };
         }
-        public void Write(string text)
+        public void Save()
         {
-            using (var writer = new StreamWriter(_caminho))
+            using (var writer = new StreamWriter(Path))
             {
-                writer.Write(text);
+                writer.Write(Content);
             };
         }
 

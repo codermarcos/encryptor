@@ -12,17 +12,55 @@ namespace Encryptor.Views.criptografias
             InitializeComponent();
         }
 
-        private string _content;
-        private string _file;
         private string _type;
+        private File _input;
+        private File _output;
 
-        private void openBtn_Click(object sender, EventArgs e)
+        private void OpenFile(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        public void Criptografar(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_type))
             {
                 MessageBox.Show(@"Selecione qual o hash !"); return;
             }
+            if (string.IsNullOrEmpty(_input?.Content))
+            {
+                MessageBox.Show(@"Abra o arquivo antes de  !"); return;
+            }
 
+            Encrypt();
+        }
+
+        private void Salvar(object sender, EventArgs e)
+        {
+            if (_input == null)
+            {
+                MessageBox.Show(@"Abra o arquivo primeiro !"); return;
+            }
+            if (_output == null)
+            {
+                MessageBox.Show(@"Criptografe o arquivo antes de salvar !"); return;
+            }
+
+            SaveFile();
+        }
+
+        private void Limpar(object sender, EventArgs e)
+        {
+            _type = null;
+            _input = null;
+            rMD5.Checked = false;
+            rSHA1.Checked = false;
+            rSHA152.Checked = false;
+            outputLbl.Text = string.Empty;
+        }
+
+        private void OpenFile()
+        {
             using (var dialog = new OpenFileDialog
             {
                 Title = @"Selecione o arquivo a ser Encryptado!",
@@ -30,54 +68,52 @@ namespace Encryptor.Views.criptografias
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             })
             {
-                if (dialog.ShowDialog() == DialogResult.Cancel) return;
+                _input = dialog.ShowDialog() == DialogResult.Cancel ? null : new File(dialog.FileName);
 
-                using (var file = new File(dialog.FileName))
-                {
-                    _file = dialog.SafeFileName;
-                    _content = file.ToHex();
-                }
+                if (_input == null) return;
+
+                outputLbl.Text = _input.Read();
             }
         }
 
-        private void salvarBtn_Click(object sender, EventArgs e)
+        private void Encrypt()
         {
-            if (string.IsNullOrEmpty(_content))
+            _output = _input;  
+            switch (_type)
             {
-                MessageBox.Show(@"Abra o arquivo primeiro !"); return;
+                case "MD5":
+                    _output.Content = Hash.Md5(_input.Read());
+                    break;
+                case "SHA1":
+                    _output.Content = Hash.Md5(_input.Read());
+                    break;
+                case "SHA152":
+                    _output.Content = Hash.Sha512(_input.Read());
+                    break;
             }
 
+            outputLbl.Text = _output.Content;
+        }
+
+        private void SaveFile()
+        {
             using (var dialog = new SaveFileDialog()
             {
                 Title = @"Onde deseja salvar o arquivo!",
                 Filter = @"Encryptor |*.crp",
-                FileName = _file
+                FileName = _input.Name
             })
             {
-                if (dialog.ShowDialog() == DialogResult.Cancel) return;               
-
-                using (var file = new File(dialog.FileName))
-                {
-                    switch (_type)
-                    {
-                        case "MD5":
-                            file.Write(Hash.Md5(_content));
-                            break;
-                        case "SHA1":
-                            file.Write(Hash.Sha1(_content));
-                            break;
-                        case "SHA152":
-                            file.Write(Hash.Sha512(_content));
-                            break;
-                    }
-                }
+                if (dialog.ShowDialog() == DialogResult.Cancel) return;
+                _output.Save();
+                MessageBox.Show(@"Arquivo salvo com sucesso !");
             }
         }
 
         private void ChangeSelect(object sender, EventArgs e)
         {
-            if (!((RadioButton) sender).Checked) return;
-                _type = ((RadioButton)sender).Text;
+            if (!((RadioButton)sender).Checked) return;
+            _type = ((RadioButton)sender).Text;
         }
     }
 }

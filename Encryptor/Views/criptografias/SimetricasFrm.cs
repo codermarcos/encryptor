@@ -18,7 +18,7 @@ namespace Encryptor.Views.criptografias
             InitializeComponent();
         }
 
-        private void openBtn_Click(object sender, EventArgs e)
+        private void OpenFile(object sender, EventArgs e)
         {
             using (var dialog = new OpenFileDialog
             {
