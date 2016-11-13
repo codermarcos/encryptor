@@ -31,7 +31,6 @@ namespace Encryptor.Views.criptografias
                 {
                     using (var file = new File(dialog.FileName))
                     {
-                        MessageBox.Show(file.ToHex());
                     }
                 }
             }

@@ -55,7 +55,6 @@ namespace Encryptor.Views.criptografias
             _input = null;
             rMD5.Checked = false;
             rSHA1.Checked = false;
-            rSHA152.Checked = false;
             outputLbl.Text = string.Empty;
         }
 
@@ -86,9 +85,6 @@ namespace Encryptor.Views.criptografias
                     break;
                 case "SHA1":
                     _output.Content = Hash.Md5(_input.Read());
-                    break;
-                case "SHA152":
-                    _output.Content = Hash.Sha512(_input.Read());
                     break;
             }
 
