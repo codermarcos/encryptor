@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Criptographys\Hash.cs" />
+    <Compile Include="Criptographys\learn.cs" />
     <Compile Include="Criptographys\Simetricas.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Functions.cs" />

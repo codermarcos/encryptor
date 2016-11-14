@@ -31,7 +31,7 @@ namespace Logic
         {
             using (var reader = new StreamReader(Path))
             {
-                return Content = Extension != "txt" ? Functions.StringToBin(reader.ReadToEnd()) : reader.ReadToEnd();
+                return Content = reader.ReadToEnd();
             };
         }
         public void Save()

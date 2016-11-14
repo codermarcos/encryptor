@@ -35,17 +35,18 @@ namespace Encryptor.Views.criptografias
             this.clearBtn = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
             this.hashCriptographys = new System.Windows.Forms.GroupBox();
+            this.rDES = new System.Windows.Forms.RadioButton();
             this.rRINJDAEL = new System.Windows.Forms.RadioButton();
             this.criptografarBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.char32Btn = new System.Windows.Forms.Button();
+            this.char24Btn = new System.Windows.Forms.Button();
+            this.char16Btn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.visibiladadeBtn = new System.Windows.Forms.CheckBox();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.outputLbl = new System.Windows.Forms.TextBox();
             this.descriptografarBtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.char16Btn = new System.Windows.Forms.Button();
-            this.char24Btn = new System.Windows.Forms.Button();
-            this.char32Btn = new System.Windows.Forms.Button();
             this.header1 = new Encryptor.Views.Shared.Header();
             this.hashCriptographys.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -96,6 +97,7 @@ namespace Encryptor.Views.criptografias
             // 
             // hashCriptographys
             // 
+            this.hashCriptographys.Controls.Add(this.rDES);
             this.hashCriptographys.Controls.Add(this.rRINJDAEL);
             this.hashCriptographys.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hashCriptographys.Location = new System.Drawing.Point(18, 98);
@@ -105,11 +107,24 @@ namespace Encryptor.Views.criptografias
             this.hashCriptographys.TabStop = false;
             this.hashCriptographys.Text = "Selecione qual simetrica :";
             // 
+            // rDES
+            // 
+            this.rDES.AutoSize = true;
+            this.rDES.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rDES.Location = new System.Drawing.Point(215, 44);
+            this.rDES.Name = "rDES";
+            this.rDES.Size = new System.Drawing.Size(54, 26);
+            this.rDES.TabIndex = 5;
+            this.rDES.TabStop = true;
+            this.rDES.Text = "DES";
+            this.rDES.UseVisualStyleBackColor = true;
+            this.rDES.CheckedChanged += new System.EventHandler(this.ChangeSelect);
+            // 
             // rRINJDAEL
             // 
             this.rRINJDAEL.AutoSize = true;
             this.rRINJDAEL.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rRINJDAEL.Location = new System.Drawing.Point(17, 34);
+            this.rRINJDAEL.Location = new System.Drawing.Point(69, 44);
             this.rRINJDAEL.Name = "rRINJDAEL";
             this.rRINJDAEL.Size = new System.Drawing.Size(97, 26);
             this.rRINJDAEL.TabIndex = 4;
@@ -144,6 +159,49 @@ namespace Encryptor.Views.criptografias
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Digite  a senha da criptografia :";
+            // 
+            // char32Btn
+            // 
+            this.char32Btn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.char32Btn.Location = new System.Drawing.Point(277, 59);
+            this.char32Btn.Name = "char32Btn";
+            this.char32Btn.Size = new System.Drawing.Size(70, 30);
+            this.char32Btn.TabIndex = 23;
+            this.char32Btn.Text = "32";
+            this.char32Btn.UseVisualStyleBackColor = true;
+            this.char32Btn.Click += new System.EventHandler(this.GeneratePassword);
+            // 
+            // char24Btn
+            // 
+            this.char24Btn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.char24Btn.Location = new System.Drawing.Point(199, 59);
+            this.char24Btn.Name = "char24Btn";
+            this.char24Btn.Size = new System.Drawing.Size(70, 30);
+            this.char24Btn.TabIndex = 22;
+            this.char24Btn.Text = "24";
+            this.char24Btn.UseVisualStyleBackColor = true;
+            this.char24Btn.Click += new System.EventHandler(this.GeneratePassword);
+            // 
+            // char16Btn
+            // 
+            this.char16Btn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.char16Btn.Location = new System.Drawing.Point(121, 59);
+            this.char16Btn.Name = "char16Btn";
+            this.char16Btn.Size = new System.Drawing.Size(70, 30);
+            this.char16Btn.TabIndex = 21;
+            this.char16Btn.Text = "16";
+            this.char16Btn.UseVisualStyleBackColor = true;
+            this.char16Btn.Click += new System.EventHandler(this.GeneratePassword);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 22);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Gerar senha :";
             // 
             // visibiladadeBtn
             // 
@@ -186,49 +244,6 @@ namespace Encryptor.Views.criptografias
             this.descriptografarBtn.Text = "DESCRIPTOGRAFAR";
             this.descriptografarBtn.UseVisualStyleBackColor = true;
             this.descriptografarBtn.Click += new System.EventHandler(this.Descriptografar);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 22);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Gerar senha :";
-            // 
-            // char16Btn
-            // 
-            this.char16Btn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.char16Btn.Location = new System.Drawing.Point(121, 59);
-            this.char16Btn.Name = "char16Btn";
-            this.char16Btn.Size = new System.Drawing.Size(70, 30);
-            this.char16Btn.TabIndex = 21;
-            this.char16Btn.Text = "16";
-            this.char16Btn.UseVisualStyleBackColor = true;
-            this.char16Btn.Click += new System.EventHandler(this.GeneratePassword);
-            // 
-            // char24Btn
-            // 
-            this.char24Btn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.char24Btn.Location = new System.Drawing.Point(199, 59);
-            this.char24Btn.Name = "char24Btn";
-            this.char24Btn.Size = new System.Drawing.Size(70, 30);
-            this.char24Btn.TabIndex = 22;
-            this.char24Btn.Text = "24";
-            this.char24Btn.UseVisualStyleBackColor = true;
-            this.char24Btn.Click += new System.EventHandler(this.GeneratePassword);
-            // 
-            // char32Btn
-            // 
-            this.char32Btn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.char32Btn.Location = new System.Drawing.Point(277, 59);
-            this.char32Btn.Name = "char32Btn";
-            this.char32Btn.Size = new System.Drawing.Size(70, 30);
-            this.char32Btn.TabIndex = 23;
-            this.char32Btn.Text = "32";
-            this.char32Btn.UseVisualStyleBackColor = true;
-            this.char32Btn.Click += new System.EventHandler(this.GeneratePassword);
             // 
             // header1
             // 
@@ -285,5 +300,6 @@ namespace Encryptor.Views.criptografias
         private System.Windows.Forms.Button char16Btn;
         private System.Windows.Forms.Button char32Btn;
         private System.Windows.Forms.Button char24Btn;
+        private System.Windows.Forms.RadioButton rDES;
     }
 }

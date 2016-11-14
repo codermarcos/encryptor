@@ -52,9 +52,9 @@ namespace Encryptor.Views.criptografias
             {
                 MessageBox.Show(@"O arquivo a ser decriptado é invalido !"); return;
             }
-            if (passwordBox.Text.Length != 16 && passwordBox.Text.Length != 24 && passwordBox.Text.Length != 32)
+            if (string.IsNullOrEmpty(passwordBox.Text))
             {
-                MessageBox.Show(@"A Senha deve ter 16, 24 ou 36 caracteres !"); return;
+                MessageBox.Show(@"Digite uma senha antes de encrptar !"); return;
             }
 
             Decrypt();
@@ -78,9 +78,10 @@ namespace Encryptor.Views.criptografias
         {
             _type = null;
             _input = null;
-            passwordBox.Text = "";
+            rDES.Checked = false;
             rRINJDAEL.Checked = false;
             outputLbl.Text = string.Empty;
+            passwordBox.Text = string.Empty; 
             visibiladadeBtn.Checked = false;
         }
 
@@ -89,7 +90,7 @@ namespace Encryptor.Views.criptografias
             using (var dialog = new OpenFileDialog
             {
                 Title = @"Selecione o arquivo a ser Encryptado!",
-                Filter = @"AllFiles |*.*",
+                Filter = @"Text Files |*.txt|Encrypted Files |*.crp",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             })
             {
@@ -108,7 +109,10 @@ namespace Encryptor.Views.criptografias
             switch (_type)
             {
                 case "RIJNDAEL":
-                    _output.Content = Simetricas.Encript.Rijndael(_input.Read(),_output.Password);
+                    _output.Content = Simetricas.Encript.Rijndael(_input.Read(), _output.Password);
+                    break;
+                case "DES":
+                    _output.Content = Simetricas.Encript.Des(_input.Read(), _output.Password);
                     break;
             }
 
@@ -123,6 +127,9 @@ namespace Encryptor.Views.criptografias
             {
                 case "RIJNDAEL":
                     _output.Content = Simetricas.Decript.Rijndael(_input.Read(), _output.Password);
+                    break;
+                case "DES":
+                    _output.Content = Simetricas.Decript.Des(_input.Read(), _output.Password);
                     break;
             }
 
@@ -139,15 +146,11 @@ namespace Encryptor.Views.criptografias
             })
             {
                 if (dialog.ShowDialog() == DialogResult.Cancel) return;
+                _output.Path = dialog.FileName;
                 _output.Save();
                 MessageBox.Show(@"Arquivo salvo com sucesso !");
+                Limpar(null,null);
             }
-        }
-
-        private void ChangeSelect(object sender, EventArgs e)
-        {
-            if (!((RadioButton)sender).Checked) return;
-            _type = ((RadioButton)sender).Text;
         }
 
         private void GeneratePassword(object sender, EventArgs e)
@@ -179,6 +182,12 @@ namespace Encryptor.Views.criptografias
                 passwordBox.UseSystemPasswordChar = true;
                 visibiladadeBtn.Text = @"-";
             }
+        }
+
+        private void ChangeSelect(object sender, EventArgs e)
+        {
+            if (!((RadioButton)sender).Checked) return;
+            _type = ((RadioButton)sender).Text;
         }
     }
 }

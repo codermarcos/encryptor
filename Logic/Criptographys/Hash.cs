@@ -7,21 +7,24 @@ namespace Logic.Criptographys
 {
     public class Hash
     {
-        public static string Md5(string text)
+        public class Encrypt
         {
-            using (var md5 = new MD5CryptoServiceProvider())
+            public static string Md5(string text)
             {
-                md5.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return md5.Hash.Aggregate(string.Empty, (current, c) => current + c.ToString("x2"));
+                using (var md5 = new MD5CryptoServiceProvider())
+                {
+                    md5.ComputeHash(Encoding.UTF8.GetBytes(text));
+                    return md5.Hash.Aggregate(string.Empty, (current, c) => current + c.ToString("x2"));
+                }
             }
-        }
-        public static string Sha1(string text)
-        {
-            using (var sha1 = new SHA1Managed())
+            public static string Sha1(string text)
             {
-                sha1.ComputeHash(Encoding.UTF8.GetBytes(text));
-                return sha1.Hash.Aggregate(string.Empty, (current, c) => current + c.ToString("X2"));
+                using (var sha1 = new SHA1Managed())
+                {
+                    sha1.ComputeHash(Encoding.UTF8.GetBytes(text));
+                    return sha1.Hash.Aggregate(string.Empty, (current, c) => current + c.ToString("X2"));
+                }
             }
-        }
+        }        
     }
 }

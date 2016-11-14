@@ -23,6 +23,18 @@ namespace Encryptor.Views.criptografias
 
         public void Criptografar(object sender, EventArgs e)
         {
+            Crypt crypt = new Crypt(CryptProvider.DES); // Tipos: DES, RC2, Rijndael e TripleDES
+            crypt.Key = "1456";
+
+            string textoCriptografado = crypt.Encrypt("MARCOS JUNIOR");
+
+            MessageBox.Show(textoCriptografado);
+
+
+            string textoDescripto = crypt.Decrypt(textoCriptografado);
+
+            MessageBox.Show(textoDescripto);
+
             if (string.IsNullOrEmpty(_type))
             {
                 MessageBox.Show(@"Selecione qual o hash !"); return;
@@ -63,7 +75,7 @@ namespace Encryptor.Views.criptografias
             using (var dialog = new OpenFileDialog
             {
                 Title = @"Selecione o arquivo a ser Encryptado!",
-                Filter = @"AllFiles |*.*",
+                Filter = @"Text Files |*.txt|Encrypted Files |*.crp",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             })
             {
@@ -81,10 +93,10 @@ namespace Encryptor.Views.criptografias
             switch (_type)
             {
                 case "MD5":
-                    _output.Content = Hash.Md5(_input.Read());
+                    _output.Content = Hash.Encrypt.Md5(_input.Read());
                     break;
                 case "SHA1":
-                    _output.Content = Hash.Md5(_input.Read());
+                    _output.Content = Hash.Encrypt.Md5(_input.Read());
                     break;
             }
 
@@ -101,6 +113,7 @@ namespace Encryptor.Views.criptografias
             })
             {
                 if (dialog.ShowDialog() == DialogResult.Cancel) return;
+                _output.Path = dialog.FileName;
                 _output.Save();
                 MessageBox.Show(@"Arquivo salvo com sucesso !");
             }
