@@ -32,7 +32,7 @@ namespace Encryptor.Views.criptografias
             }
             if (string.IsNullOrEmpty(passwordBox.Text))
             {
-                MessageBox.Show(@"Digite uma senha antes de encrptar !"); return;
+                MessageBox.Show(@"Digite uma senha antes de encriptar !"); return;
             }
 
             Encrypt();
@@ -48,13 +48,13 @@ namespace Encryptor.Views.criptografias
             {
                 MessageBox.Show(@"Abra o arquivo que vai encriptar !"); return;
             }
-            if (_input.Content.Length % 2 != 0)
-            {
-                MessageBox.Show(@"O arquivo a ser decriptado é invalido !"); return;
-            }
             if (string.IsNullOrEmpty(passwordBox.Text))
             {
-                MessageBox.Show(@"Digite uma senha antes de encrptar !"); return;
+                MessageBox.Show(@"Digite uma senha antes de encriptar !"); return;
+            }
+            if (_input.Extension != "crp")
+            {
+                MessageBox.Show(@"Apenas arquivos crp podem ser descriptografados !"); return;
             }
 
             Decrypt();

@@ -68,6 +68,11 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\conclusao\ConclusaoFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,11 +97,11 @@
     <Compile Include="Views\criptografias\HashFrm.Designer.cs">
       <DependentUpon>HashFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\grupo\ConclusaoFrm.cs">
+    <Compile Include="Views\grupo\GrupoFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\grupo\ConclusaoFrm.Designer.cs">
-      <DependentUpon>ConclusaoFrm.cs</DependentUpon>
+    <Compile Include="Views\grupo\GrupoFrm.Designer.cs">
+      <DependentUpon>GrupoFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\Header.cs">
       <SubType>UserControl</SubType>
@@ -121,8 +126,8 @@
     <EmbeddedResource Include="Views\criptografias\HashFrm.resx">
       <DependentUpon>HashFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\grupo\ConclusaoFrm.resx">
-      <DependentUpon>ConclusaoFrm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\grupo\GrupoFrm.resx">
+      <DependentUpon>GrupoFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\Header.resx">
       <DependentUpon>Header.cs</DependentUpon>
@@ -136,11 +141,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -177,7 +177,12 @@
       <Name>Logic</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\02.png" />
+    <Content Include="Resources\03.png" />
+    <None Include="Resources\11.png" />
+    <None Include="Resources\01.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

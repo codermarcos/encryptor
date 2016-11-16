@@ -31,13 +31,13 @@ namespace Encryptor.Views.criptografias
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.criptografarBtn = new System.Windows.Forms.Button();
             this.clearBtn = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
             this.hashCriptographys = new System.Windows.Forms.GroupBox();
             this.rDES = new System.Windows.Forms.RadioButton();
             this.rRINJDAEL = new System.Windows.Forms.RadioButton();
-            this.criptografarBtn = new System.Windows.Forms.Button();
+            this.openBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.char32Btn = new System.Windows.Forms.Button();
             this.char24Btn = new System.Windows.Forms.Button();
@@ -62,16 +62,16 @@ namespace Encryptor.Views.criptografias
             this.label1.TabIndex = 1;
             this.label1.Text = "SIMETRICAS";
             // 
-            // button1
+            // criptografarBtn
             // 
-            this.button1.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(381, 203);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(327, 40);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "CRIPTOGRAFAR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Criptografar);
+            this.criptografarBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.criptografarBtn.Location = new System.Drawing.Point(381, 203);
+            this.criptografarBtn.Name = "criptografarBtn";
+            this.criptografarBtn.Size = new System.Drawing.Size(327, 40);
+            this.criptografarBtn.TabIndex = 18;
+            this.criptografarBtn.Text = "CRIPTOGRAFAR";
+            this.criptografarBtn.UseVisualStyleBackColor = true;
+            this.criptografarBtn.Click += new System.EventHandler(this.Criptografar);
             // 
             // clearBtn
             // 
@@ -100,7 +100,7 @@ namespace Encryptor.Views.criptografias
             this.hashCriptographys.Controls.Add(this.rDES);
             this.hashCriptographys.Controls.Add(this.rRINJDAEL);
             this.hashCriptographys.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hashCriptographys.Location = new System.Drawing.Point(18, 98);
+            this.hashCriptographys.Location = new System.Drawing.Point(12, 98);
             this.hashCriptographys.Name = "hashCriptographys";
             this.hashCriptographys.Size = new System.Drawing.Size(353, 90);
             this.hashCriptographys.TabIndex = 14;
@@ -133,16 +133,16 @@ namespace Encryptor.Views.criptografias
             this.rRINJDAEL.UseVisualStyleBackColor = true;
             this.rRINJDAEL.CheckedChanged += new System.EventHandler(this.ChangeSelect);
             // 
-            // criptografarBtn
+            // openBtn
             // 
-            this.criptografarBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.criptografarBtn.Location = new System.Drawing.Point(381, 108);
-            this.criptografarBtn.Name = "criptografarBtn";
-            this.criptografarBtn.Size = new System.Drawing.Size(105, 80);
-            this.criptografarBtn.TabIndex = 13;
-            this.criptografarBtn.Text = "ABRIR";
-            this.criptografarBtn.UseVisualStyleBackColor = true;
-            this.criptografarBtn.Click += new System.EventHandler(this.OpenFile);
+            this.openBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.openBtn.Location = new System.Drawing.Point(381, 108);
+            this.openBtn.Name = "openBtn";
+            this.openBtn.Size = new System.Drawing.Size(105, 80);
+            this.openBtn.TabIndex = 13;
+            this.openBtn.Text = "ABRIR";
+            this.openBtn.UseVisualStyleBackColor = true;
+            this.openBtn.Click += new System.EventHandler(this.OpenFile);
             // 
             // groupBox1
             // 
@@ -153,7 +153,7 @@ namespace Encryptor.Views.criptografias
             this.groupBox1.Controls.Add(this.visibiladadeBtn);
             this.groupBox1.Controls.Add(this.passwordBox);
             this.groupBox1.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(18, 194);
+            this.groupBox1.Location = new System.Drawing.Point(12, 194);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(353, 95);
             this.groupBox1.TabIndex = 15;
@@ -263,11 +263,11 @@ namespace Encryptor.Views.criptografias
             this.Controls.Add(this.descriptografarBtn);
             this.Controls.Add(this.outputLbl);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.criptografarBtn);
             this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.hashCriptographys);
-            this.Controls.Add(this.criptografarBtn);
+            this.Controls.Add(this.openBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.header1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -285,12 +285,12 @@ namespace Encryptor.Views.criptografias
         #endregion
         private System.Windows.Forms.Label label1;
         private Header header1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button criptografarBtn;
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.GroupBox hashCriptographys;
         private System.Windows.Forms.RadioButton rRINJDAEL;
-        private System.Windows.Forms.Button criptografarBtn;
+        private System.Windows.Forms.Button openBtn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.TextBox outputLbl;

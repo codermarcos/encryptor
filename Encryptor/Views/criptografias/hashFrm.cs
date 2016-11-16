@@ -23,25 +23,13 @@ namespace Encryptor.Views.criptografias
 
         public void Criptografar(object sender, EventArgs e)
         {
-            Crypt crypt = new Crypt(CryptProvider.DES); // Tipos: DES, RC2, Rijndael e TripleDES
-            crypt.Key = "1456";
-
-            string textoCriptografado = crypt.Encrypt("MARCOS JUNIOR");
-
-            MessageBox.Show(textoCriptografado);
-
-
-            string textoDescripto = crypt.Decrypt(textoCriptografado);
-
-            MessageBox.Show(textoDescripto);
-
+            if (string.IsNullOrEmpty(_input?.Content))
+            {
+                MessageBox.Show(@"Abra o arquivo primeiro !"); return;
+            }
             if (string.IsNullOrEmpty(_type))
             {
                 MessageBox.Show(@"Selecione qual o hash !"); return;
-            }
-            if (string.IsNullOrEmpty(_input?.Content))
-            {
-                MessageBox.Show(@"Abra o arquivo antes de  !"); return;
             }
 
             Encrypt();
@@ -49,11 +37,7 @@ namespace Encryptor.Views.criptografias
 
         private void Salvar(object sender, EventArgs e)
         {
-            if (_input == null)
-            {
-                MessageBox.Show(@"Abra o arquivo primeiro !"); return;
-            }
-            if (_output == null)
+            if (_output == null || _input == null)
             {
                 MessageBox.Show(@"Criptografe o arquivo antes de salvar !"); return;
             }
@@ -96,7 +80,7 @@ namespace Encryptor.Views.criptografias
                     _output.Content = Hash.Encrypt.Md5(_input.Read());
                     break;
                 case "SHA1":
-                    _output.Content = Hash.Encrypt.Md5(_input.Read());
+                    _output.Content = Hash.Encrypt.Sha1(_input.Read());
                     break;
             }
 

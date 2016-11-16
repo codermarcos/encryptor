@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -124,8 +123,7 @@ namespace Logic.Criptographys
                     }
                 }
             }
-            var password = new PasswordDeriveBytes(key, Encoding.UTF8.GetBytes(salt));
-            return password.GetBytes(key.Length);
+            return new PasswordDeriveBytes(key, Encoding.UTF8.GetBytes(salt)).GetBytes(key.Length);
         }
     }
 

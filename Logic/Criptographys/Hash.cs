@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 
@@ -14,9 +13,10 @@ namespace Logic.Criptographys
                 using (var md5 = new MD5CryptoServiceProvider())
                 {
                     md5.ComputeHash(Encoding.UTF8.GetBytes(text));
-                    return md5.Hash.Aggregate(string.Empty, (current, c) => current + c.ToString("x2"));
+                    return md5.Hash.Aggregate(string.Empty, (current, c) => current + c.ToString("X2"));
                 }
             }
+
             public static string Sha1(string text)
             {
                 using (var sha1 = new SHA1Managed())

@@ -22,5 +22,15 @@ namespace Encryptor.Views.grupo
         {
             
         }
+
+
+        private void Image_1_Mike(object sender, EventArgs e)
+        {
+            mike.Image = Properties.Resources._11;
+        }
+        private void Image_0_Mike(object sender, EventArgs e)
+        {
+            mike.Image = Properties.Resources._01;
+        }
     }
 }
