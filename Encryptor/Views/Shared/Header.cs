@@ -58,6 +58,12 @@ namespace Encryptor.Views.Shared
             _parent.Dispose();
             new HashFrm().Show(); 
         }
+
+        private void CallMikcipherFrm(object sender, EventArgs e)
+        {
+            _parent.Dispose();
+            new MikcipherFrm().Show();
+        }
         #endregion
 
         #region HEAD

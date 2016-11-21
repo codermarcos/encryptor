@@ -45,6 +45,7 @@
             this.btnMin = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.mikcipherBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.head.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).BeginInit();
             this.menuSubHeader.SuspendLayout();
@@ -144,7 +145,8 @@
             this.criptografiasBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hashBtn,
             this.simetricasBtn,
-            this.assimetricasBtn});
+            this.assimetricasBtn,
+            this.mikcipherBtn});
             this.criptografiasBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.criptografiasBtn.Name = "criptografiasBtn";
             this.criptografiasBtn.Size = new System.Drawing.Size(129, 26);
@@ -233,6 +235,13 @@
             this.logo.TabIndex = 0;
             this.logo.TabStop = false;
             // 
+            // mikcipherBtn
+            // 
+            this.mikcipherBtn.Name = "mikcipherBtn";
+            this.mikcipherBtn.Size = new System.Drawing.Size(176, 26);
+            this.mikcipherBtn.Text = "MIKCIPHER";
+            this.mikcipherBtn.Click += new System.EventHandler(this.CallMikcipherFrm);
+            // 
             // Header
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,5 +282,6 @@
         private System.Windows.Forms.Panel body;
         private System.Windows.Forms.ToolStripMenuItem conclusaoBtn;
         private System.Windows.Forms.ToolStripMenuItem grupoBtn;
+        private System.Windows.Forms.ToolStripMenuItem mikcipherBtn;
     }
 }
