@@ -6,24 +6,8 @@ namespace Logic
 {
     public class Functions
     {
-        private static readonly char[] Alfabeto = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };        
-
-        public static byte[] HexToBytes(string text)
-        {
-            var bytes = text.Length / 2;
-            var retorno = new byte[bytes];
-            for (var i = 0; i < bytes; i++)
-            {
-                retorno[i] = Convert.ToByte(text.Substring(i * 2, 2), 16);
-            }
-            return retorno;
-        }
-
-        public static string BytesToHex(byte[] bytes)
-        {
-            return string.Concat(Array.ConvertAll(bytes, b => b.ToString("X2")));
-        }
-
+        private static readonly char[] Alfabeto = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+        
         public static string HexToString(string text)
         {
             var bytes = text.Length / 2;
@@ -40,14 +24,9 @@ namespace Logic
             return text.Aggregate(string.Empty, (current, c) => current + ((int) c).ToString("X"));
         }
 
-        public static string StringToBin(string text)
-        {
-            return text.Aggregate(string.Empty, (current, c) => current + Convert.ToString((int)c, 2));
-        }
-
         public static string LettersToAlphabetPosition(string letters)
         {
-            return letters.Aggregate(string.Empty, (current, c) => current + (char.IsLetter(c) ? Alfabeto.ToList().IndexOf(char.Parse(c.ToString().ToUpper())).ToString() : c.ToString()));
+            return letters.Aggregate(string.Empty, (current, c) => current + (char.IsLetter(c) ? Alfabeto.ToList().IndexOf(char.Parse(c.ToString().ToUpper())) : c).ToString());
         }
     }
 }

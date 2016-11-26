@@ -11,8 +11,7 @@ namespace Encryptor.Views.criptografias
         {
             InitializeComponent();
         }
-        private File _input;
-        private File _output;
+        private File _file;
         private Mikcipher _mikcipher;
 
         private void OpenFile(object sender, EventArgs e)
@@ -36,7 +35,7 @@ namespace Encryptor.Views.criptografias
 
         public void Criptografar(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_input?.Content))
+            if (string.IsNullOrEmpty(_file?.Input))
             {
                 MessageBox.Show(@"Abra o arquivo antes de encriptar !"); return;
             }
@@ -50,7 +49,7 @@ namespace Encryptor.Views.criptografias
 
         public void Descriptografar(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_input?.Content))
+            if (string.IsNullOrEmpty(_file?.Output))
             {
                 MessageBox.Show(@"Abra o arquivo que vai encriptar !"); return;
             }
@@ -58,7 +57,7 @@ namespace Encryptor.Views.criptografias
             {
                 MessageBox.Show(@"Digite uma chave privada antes de Decriptar !"); return;
             }
-            if (_input.Extension != "crp")
+            if (!_file.IsCrpFile())
             {
                 MessageBox.Show(@"Apenas arquivos crp podem ser descriptografados !"); return;
             }
@@ -68,13 +67,13 @@ namespace Encryptor.Views.criptografias
 
         private void Salvar(object sender, EventArgs e)
         {
-            if (_input == null)
+            if (_file == null)
             {
                 MessageBox.Show(@"Abra o arquivo que vai encriptar !"); return;
             }
-            if (_output == null)
+            if (string.IsNullOrEmpty(_file?.Output) || string.IsNullOrEmpty(_file?.Input))
             {
-                MessageBox.Show(@"Realize uma acão antes de salvar !"); return;
+                MessageBox.Show(@"Descriptogafe ou Encriptografe antes de salvar !"); return;
             }
 
             SaveFile();
@@ -82,7 +81,7 @@ namespace Encryptor.Views.criptografias
 
         private void Limpar(object sender, EventArgs e)
         {
-            _input = null;
+            _file = null;
             _mikcipher = null;
             outputLbl.Text = string.Empty;
             output_PublicKeyLbl.Text = string.Empty;
@@ -101,40 +100,38 @@ namespace Encryptor.Views.criptografias
             using (var dialog = new OpenFileDialog
             {
                 Title = @"Selecione o arquivo a ser Encryptado!",
-                Filter = @"Text Files |*.txt|Encrypted Files |*.crp",
+                Filter = @"Encrypted Files |*.crp|Text Files |*.txt",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             })
             {
-                _input = dialog.ShowDialog() == DialogResult.Cancel ? null : new File(dialog.FileName);
+                _file = dialog.ShowDialog() == DialogResult.Cancel ? null : new File(dialog.FileName);
 
-                if (_input == null) return;
+                if (_file == null) return;
                 
-                outputLbl.Text = _input.Read();
-                _mikcipher = new Mikcipher(_input.Content);
+                outputLbl.Text = _file.Read();
+                _mikcipher = new Mikcipher(_file.IsCrpFile() ? _file.Output : _file.Input);
             }
         }
 
 
         private void Encrypt()
         {
-            _output = _input;
-            _output.Password = publicaBox.Text;
-            _output.Content = _mikcipher.Encript(_output.Password);
-            outputLbl.Text = _output.Content;
+            _file.Password = publicaBox.Text;
+            _file.Output = _mikcipher.Encript(_file.Password);
+            outputLbl.Text = _file.Output;
         }
 
         private void Decrypt()
         {
-            _output = _input;
-            _output.Password = privadaBox.Text;
-            _output.Content = _mikcipher.Decript(_output.Password);
-            outputLbl.Text = _output.Content;
+            _file.Password = privadaBox.Text;
+            _file.Input = _mikcipher.Decript(_file.Password);
+            outputLbl.Text = _file.Input;
         }
 
         private void GetPublicKey()
         {
-            _mikcipher = new Mikcipher(string.Empty);
-            output_PublicKeyLbl.Text = _mikcipher.GetPublickey(gPublicaBox.Text, gPrivadaBox.Text);
+            using (var mikchiper = new Mikcipher(string.Empty))
+                output_PublicKeyLbl.Text = mikchiper.GetPublickey(gPublicaBox.Text, gPrivadaBox.Text);
         }
 
         private void SaveFile()
@@ -142,13 +139,13 @@ namespace Encryptor.Views.criptografias
             using (var dialog = new SaveFileDialog()
             {
                 Title = @"Onde deseja salvar o arquivo!",
-                Filter = @"Encryptor |*.crp",
-                FileName = _input.Name
+                Filter = _file.IsCrpFile() ? @"Text Files |*.txt" : @"Encryptor |*.crp",
+                FileName = _file.Name
             })
             {
                 if (dialog.ShowDialog() == DialogResult.Cancel) return;
-                _output.Path = dialog.FileName;
-                _output.Save();
+                _file.Path = dialog.FileName;
+                _file.Save();
                 MessageBox.Show(@"Arquivo salvo com sucesso !");
                 Limpar(null,null);
             }

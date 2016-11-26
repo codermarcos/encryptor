@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
 
 namespace Logic.Criptographys
 {
-    public class Mikcipher
+    public class Mikcipher : IDisposable
     {
         private string Content { get; set; }
 
@@ -19,7 +15,7 @@ namespace Logic.Criptographys
 
         public string Encript(string publicKey)
         {
-            var cKey = Encoding.ASCII.GetString(Functions.HexToBytes(publicKey));
+            var cKey = Functions.HexToString(publicKey);
 
             var divisor = cKey.IndexOf('|');
             var pkey = int.Parse(cKey.Substring(0, divisor));
@@ -73,6 +69,11 @@ namespace Logic.Criptographys
             retorno = contador.Aggregate("0", (current, c) => (Convert.ToInt16(current) + Convert.ToInt16(c.ToString())).ToString());
 
             return Convert.ToInt16(retorno);
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }

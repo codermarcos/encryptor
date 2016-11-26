@@ -12,8 +12,7 @@ namespace Encryptor.Views.criptografias
             InitializeComponent();
         }
         private string _type;
-        private File _input;
-        private File _output;
+        private File _file;
 
         private void OpenFile(object sender, EventArgs e)
         {
@@ -26,7 +25,7 @@ namespace Encryptor.Views.criptografias
             {
                 MessageBox.Show(@"Selecione qual é a simetrica !"); return;
             }
-            if (string.IsNullOrEmpty(_input?.Content))
+            if (string.IsNullOrEmpty(_file?.Input))
             {
                 MessageBox.Show(@"Abra o arquivo antes de encriptar !"); return;
             }
@@ -44,7 +43,7 @@ namespace Encryptor.Views.criptografias
             {
                 MessageBox.Show(@"Selecione qual é a simetrica !"); return;
             }
-            if (string.IsNullOrEmpty(_input?.Content))
+            if (string.IsNullOrEmpty(_file?.Output))
             {
                 MessageBox.Show(@"Abra o arquivo que vai encriptar !"); return;
             }
@@ -52,7 +51,7 @@ namespace Encryptor.Views.criptografias
             {
                 MessageBox.Show(@"Digite uma senha antes de encriptar !"); return;
             }
-            if (_input.Extension != "crp")
+            if (!_file.IsCrpFile())
             {
                 MessageBox.Show(@"Apenas arquivos crp podem ser descriptografados !"); return;
             }
@@ -62,13 +61,13 @@ namespace Encryptor.Views.criptografias
 
         private void Salvar(object sender, EventArgs e)
         {
-            if (_input == null)
+            if (_file == null)
             {
                 MessageBox.Show(@"Abra o arquivo que vai encriptar !"); return;
             }
-            if (_output == null)
+            if (string.IsNullOrEmpty(_file?.Output) || string.IsNullOrEmpty(_file?.Input))
             {
-                MessageBox.Show(@"Realize uma acão antes de salvar !"); return;
+                MessageBox.Show(@"Descriptogafe ou Encriptografe antes de salvar !"); return;
             }
 
             SaveFile();
@@ -77,7 +76,7 @@ namespace Encryptor.Views.criptografias
         private void Limpar(object sender, EventArgs e)
         {
             _type = null;
-            _input = null;
+            _file = null;
             rDES.Checked = false;
             rRINJDAEL.Checked = false;
             outputLbl.Text = string.Empty;
@@ -90,50 +89,48 @@ namespace Encryptor.Views.criptografias
             using (var dialog = new OpenFileDialog
             {
                 Title = @"Selecione o arquivo a ser Encryptado!",
-                Filter = @"Text Files |*.txt|Encrypted Files |*.crp",
+                Filter = @"Encrypted Files |*.crp|Text Files |*.txt",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             })
             {
-                _input = dialog.ShowDialog() == DialogResult.Cancel ? null : new File(dialog.FileName);
+                _file = dialog.ShowDialog() == DialogResult.Cancel ? null : new File(dialog.FileName);
 
-                if (_input == null) return;
+                if (_file == null) return;
 
-                outputLbl.Text = _input.Read();
+                outputLbl.Text = _file.Read();
             }
         }
 
         private void Encrypt()
         {
-            _output = _input;
-            _output.Password = passwordBox.Text;
+            _file.Password = passwordBox.Text;
             switch (_type)
             {
                 case "RIJNDAEL":
-                    _output.Content = Simetricas.Encript.Rijndael(_input.Read(), _output.Password);
+                    _file.Output = Simetricas.Encript.Rijndael(_file.Read(), _file.Password);
                     break;
                 case "DES":
-                    _output.Content = Simetricas.Encript.Des(_input.Read(), _output.Password);
+                    _file.Output = Simetricas.Encript.Des(_file.Read(), _file.Password);
                     break;
             }
 
-            outputLbl.Text = _output.Content;
+            outputLbl.Text = _file.Output;
         }
 
         private void Decrypt()
         {
-            _output = _input;
-            _output.Password = passwordBox.Text;
+            _file.Password = passwordBox.Text;
             switch (_type)
             {
                 case "RIJNDAEL":
-                    _output.Content = Simetricas.Decript.Rijndael(_input.Read(), _output.Password);
+                    _file.Input = Simetricas.Decript.Rijndael(_file.Read(), _file.Password);
                     break;
                 case "DES":
-                    _output.Content = Simetricas.Decript.Des(_input.Read(), _output.Password);
+                    _file.Input = Simetricas.Decript.Des(_file.Read(), _file.Password);
                     break;
             }
 
-            outputLbl.Text = _output.Content;
+            outputLbl.Text = _file.Input;
         }
 
         private void SaveFile()
@@ -141,13 +138,13 @@ namespace Encryptor.Views.criptografias
             using (var dialog = new SaveFileDialog()
             {
                 Title = @"Onde deseja salvar o arquivo!",
-                Filter = @"Encryptor |*.crp",
-                FileName = _input.Name
+                Filter = _file.IsCrpFile() ? @"Text Files |*.txt" : @"Encryptor |*.crp",
+                FileName = _file.Name
             })
             {
                 if (dialog.ShowDialog() == DialogResult.Cancel) return;
-                _output.Path = dialog.FileName;
-                _output.Save();
+                _file.Path = dialog.FileName;
+                _file.Save();
                 MessageBox.Show(@"Arquivo salvo com sucesso !");
                 Limpar(null,null);
             }

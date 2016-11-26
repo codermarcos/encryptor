@@ -7,7 +7,8 @@ namespace Logic
     {
         public string Name { get; set; }
         public string Path { get; set; }
-        public string Content { get; set; }
+        public string Input { get; set; }
+        public string Output { get; set; }
         public string Password { get; set; }
         public string Extension { get; set; }
 
@@ -27,18 +28,24 @@ namespace Logic
             return Path.Substring(Path.LastIndexOf('.') + 1, Path.Length - Path.LastIndexOf('.') - 1);
         }
 
+        public bool IsCrpFile()
+        {
+            return Extension == "crp";
+        }
+
         public string Read()
         {
             using (var reader = new StreamReader(Path))
             {
-                return Content = reader.ReadToEnd();
+                    return IsCrpFile() ? Output = reader.ReadToEnd() : Input = reader.ReadToEnd();
             };
         }
+
         public void Save()
         {
             using (var writer = new StreamWriter(Path))
             {
-                writer.Write(Content);
+                writer.Write(IsCrpFile() ? Input : Output);
             };
         }
 

@@ -175,7 +175,6 @@ namespace Encryptor.Views.criptografias
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AssimetricasFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.AssimetricasFrm_Load);
             this.AssimetricasCriptographys.ResumeLayout(false);
             this.AssimetricasCriptographys.PerformLayout();
             this.ResumeLayout(false);

@@ -189,6 +189,8 @@
   <ItemGroup>
     <Content Include="Resources\02.png" />
     <Content Include="Resources\03.png" />
+    <None Include="Resources\44.png" />
+    <None Include="Resources\04.png" />
     <None Include="Resources\11.png" />
     <None Include="Resources\01.png" />
   </ItemGroup>

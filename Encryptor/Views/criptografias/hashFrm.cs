@@ -13,8 +13,7 @@ namespace Encryptor.Views.criptografias
         }
 
         private string _type;
-        private File _input;
-        private File _output;
+        private File _file;
 
         private void OpenFile(object sender, EventArgs e)
         {
@@ -23,7 +22,7 @@ namespace Encryptor.Views.criptografias
 
         public void Criptografar(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_input?.Content))
+            if (string.IsNullOrEmpty(_file?.Input))
             {
                 MessageBox.Show(@"Abra o arquivo primeiro !"); return;
             }
@@ -37,7 +36,11 @@ namespace Encryptor.Views.criptografias
 
         private void Salvar(object sender, EventArgs e)
         {
-            if (_output == null || _input == null)
+            if (_file == null)
+            {
+                MessageBox.Show(@"Abra o arquivo antes de salvar !"); return;
+            }
+            if (string.IsNullOrEmpty(_file.Output))
             {
                 MessageBox.Show(@"Criptografe o arquivo antes de salvar !"); return;
             }
@@ -48,7 +51,7 @@ namespace Encryptor.Views.criptografias
         private void Limpar(object sender, EventArgs e)
         {
             _type = null;
-            _input = null;
+            _file = null;
             rMD5.Checked = false;
             rSHA1.Checked = false;
             outputLbl.Text = string.Empty;
@@ -63,28 +66,27 @@ namespace Encryptor.Views.criptografias
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             })
             {
-                _input = dialog.ShowDialog() == DialogResult.Cancel ? null : new File(dialog.FileName);
+                _file = dialog.ShowDialog() == DialogResult.Cancel ? null : new File(dialog.FileName);
 
-                if (_input == null) return;
+                if (_file == null) return;
 
-                outputLbl.Text = _input.Read();
+                outputLbl.Text = _file.Read();
             }
         }
 
         private void Encrypt()
         {
-            _output = _input;  
             switch (_type)
             {
                 case "MD5":
-                    _output.Content = Hash.Encrypt.Md5(_input.Read());
+                    _file.Output = Hash.Encrypt.Md5(_file.Read());
                     break;
                 case "SHA1":
-                    _output.Content = Hash.Encrypt.Sha1(_input.Read());
+                    _file.Output = Hash.Encrypt.Sha1(_file.Read());
                     break;
             }
 
-            outputLbl.Text = _output.Content;
+            outputLbl.Text = _file.Output;
         }
 
         private void SaveFile()
@@ -93,13 +95,14 @@ namespace Encryptor.Views.criptografias
             {
                 Title = @"Onde deseja salvar o arquivo!",
                 Filter = @"Encryptor |*.crp",
-                FileName = _input.Name
+                FileName = _file.Name
             })
             {
                 if (dialog.ShowDialog() == DialogResult.Cancel) return;
-                _output.Path = dialog.FileName;
-                _output.Save();
+                _file.Path = dialog.FileName;
+                _file.Save();
                 MessageBox.Show(@"Arquivo salvo com sucesso !");
+                Limpar(null, null);
             }
         }
 
