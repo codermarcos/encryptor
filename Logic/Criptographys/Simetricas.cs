@@ -7,9 +7,13 @@ namespace Logic.Criptographys
 {
     public class Simetricas
     {
-        static readonly byte[] MatrizRijndeal = { 0xf, 0x6f, 0x13, 0x2e, 0x35, 0xc2, 0xcd, 0xf9, 0x5, 0x46, 0x9c, 0xea, 0xa8, 0x4b, 0x73, 0xcc };
+        private static readonly byte[] MatrizRijndeal =
+        {
+            0xf, 0x6f, 0x13, 0x2e, 0x35, 0xc2, 0xcd, 0xf9, 0x5, 0x46, 0x9c,
+            0xea, 0xa8, 0x4b, 0x73, 0xcc
+        };
 
-        static readonly byte[] MatrizDes = { 0xf, 0x6f, 0x13, 0x2e, 0x35, 0xc2, 0xcd, 0xf9 };
+        private static readonly byte[] MatrizDes = {0xf, 0x6f, 0x13, 0x2e, 0x35, 0xc2, 0xcd, 0xf9};
 
         public class Encript
         {
@@ -67,8 +71,9 @@ namespace Logic.Criptographys
                     return "NÃO FOI POSSIVEL CODIFICAR VERIFIQUE O PREENCHIMENTO E TENTE NOVAMENTE";
                 }
             }
+        }
 
-            public class Decript
+        public class Decript
             {
                 public static string Rijndael(string text, string key)
                 {
@@ -81,7 +86,8 @@ namespace Logic.Criptographys
                             {
                                 using (var memory = new MemoryStream(bytes, 0, bytes.Length))
                                 {
-                                    using (var decryptor = new CryptoStream(memory, cryptography, CryptoStreamMode.Read))
+                                    using (var decryptor = new CryptoStream(memory, cryptography, CryptoStreamMode.Read)
+                                        )
                                     {
                                         using (var reader = new StreamReader(decryptor))
                                         {
@@ -109,7 +115,8 @@ namespace Logic.Criptographys
                             {
                                 using (var memory = new MemoryStream(bytes, 0, bytes.Length))
                                 {
-                                    using (var decryptor = new CryptoStream(memory, cryptography, CryptoStreamMode.Read))
+                                    using (var decryptor = new CryptoStream(memory, cryptography, CryptoStreamMode.Read)
+                                        )
                                     {
                                         using (var reader = new StreamReader(decryptor))
                                         {
@@ -133,27 +140,26 @@ namespace Logic.Criptographys
 
                 if (algorithm.LegalKeySizes.Length > 0)
                 {
-                    var keySize = key.Length * 8;
+                    var keySize = key.Length*8;
                     var minSize = algorithm.LegalKeySizes[0].MinSize;
                     var maxSize = algorithm.LegalKeySizes[0].MaxSize;
                     var skipSize = algorithm.LegalKeySizes[0].SkipSize;
 
                     if (keySize > maxSize)
                     {
-                        key = key.Substring(0, maxSize / 8);
+                        key = key.Substring(0, maxSize/8);
                     }
                     else if (keySize < maxSize)
                     {
-                        var validSize = (keySize <= minSize) ? minSize : (keySize - keySize % skipSize) + skipSize;
+                        var validSize = (keySize <= minSize) ? minSize : (keySize - keySize%skipSize) + skipSize;
                         if (keySize < validSize)
                         {
-                            key = key.PadRight(validSize / 8, '*');
+                            key = key.PadRight(validSize/8, '*');
                         }
                     }
                 }
                 return new PasswordDeriveBytes(key, Encoding.UTF8.GetBytes(salt)).GetBytes(key.Length);
             }
-        }
-
     }
+}
 
