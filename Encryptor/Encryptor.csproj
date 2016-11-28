@@ -73,29 +73,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\conclusao\ConclusaoFrm.cs">
+    <Compile Include="Views\criptografias\AssimetricasFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\conclusao\ConclusaoFrm.Designer.cs">
-      <DependentUpon>ConclusaoFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\criptografias\MikcipherFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\criptografias\MikcipherFrm.Designer.cs">
-      <DependentUpon>MikcipherFrm.cs</DependentUpon>
+    <Compile Include="Views\criptografias\AssimetricasFrm.Designer.cs">
+      <DependentUpon>AssimetricasFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\criptografias\SimetricasFrm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\criptografias\SimetricasFrm.Designer.cs">
       <DependentUpon>SimetricasFrm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\criptografias\AssimitricasFrm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\criptografias\AssimitricasFrm.Designer.cs">
-      <DependentUpon>AssimitricasFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\criptografias\HashFrm.cs">
       <SubType>Form</SubType>
@@ -120,17 +108,11 @@
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\conclusao\ConclusaoFrm.resx">
-      <DependentUpon>ConclusaoFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\criptografias\MikcipherFrm.resx">
-      <DependentUpon>MikcipherFrm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\criptografias\AssimetricasFrm.resx">
+      <DependentUpon>AssimetricasFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\criptografias\SimetricasFrm.resx">
       <DependentUpon>SimetricasFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\criptografias\AssimitricasFrm.resx">
-      <DependentUpon>AssimitricasFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\criptografias\HashFrm.resx">
       <DependentUpon>HashFrm.cs</DependentUpon>

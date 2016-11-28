@@ -43,10 +43,9 @@
   <ItemGroup>
     <Compile Include="Criptographys\Assimetricas.cs" />
     <Compile Include="Criptographys\Hash.cs" />
-    <Compile Include="Criptographys\Mikcipher.cs" />
     <Compile Include="Criptographys\Simetricas.cs" />
-    <Compile Include="File.cs" />
     <Compile Include="Functions.cs" />
+    <Compile Include="Mikcipher\Mikcipher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

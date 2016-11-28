@@ -39,13 +39,11 @@
             this.hashBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.simetricasBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.assimetricasBtn = new System.Windows.Forms.ToolStripMenuItem();
-            this.conclusaoBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.grupoBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.body = new System.Windows.Forms.Panel();
             this.btnMin = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.logo = new System.Windows.Forms.PictureBox();
-            this.mikcipherBtn = new System.Windows.Forms.ToolStripMenuItem();
             this.head.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLogo)).BeginInit();
             this.menuSubHeader.SuspendLayout();
@@ -132,7 +130,6 @@
             this.menuSubHeader.BackColor = System.Drawing.Color.Silver;
             this.menuSubHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.criptografiasBtn,
-            this.conclusaoBtn,
             this.grupoBtn});
             this.menuSubHeader.Location = new System.Drawing.Point(0, 0);
             this.menuSubHeader.Name = "menuSubHeader";
@@ -145,8 +142,7 @@
             this.criptografiasBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hashBtn,
             this.simetricasBtn,
-            this.assimetricasBtn,
-            this.mikcipherBtn});
+            this.assimetricasBtn});
             this.criptografiasBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.criptografiasBtn.Name = "criptografiasBtn";
             this.criptografiasBtn.Size = new System.Drawing.Size(129, 26);
@@ -172,14 +168,6 @@
             this.assimetricasBtn.Size = new System.Drawing.Size(176, 26);
             this.assimetricasBtn.Text = "ASSIMETRICAS";
             this.assimetricasBtn.Click += new System.EventHandler(this.CallAssimetricasFrm);
-            // 
-            // conclusaoBtn
-            // 
-            this.conclusaoBtn.Font = new System.Drawing.Font("Tw Cen MT Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.conclusaoBtn.Name = "conclusaoBtn";
-            this.conclusaoBtn.Size = new System.Drawing.Size(102, 26);
-            this.conclusaoBtn.Text = "CONCLUSÃO";
-            this.conclusaoBtn.Click += new System.EventHandler(this.CallConclusaoFrm);
             // 
             // grupoBtn
             // 
@@ -235,13 +223,6 @@
             this.logo.TabIndex = 0;
             this.logo.TabStop = false;
             // 
-            // mikcipherBtn
-            // 
-            this.mikcipherBtn.Name = "mikcipherBtn";
-            this.mikcipherBtn.Size = new System.Drawing.Size(176, 26);
-            this.mikcipherBtn.Text = "MIKCIPHER";
-            this.mikcipherBtn.Click += new System.EventHandler(this.CallMikcipherFrm);
-            // 
             // Header
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,8 +261,6 @@
         private System.Windows.Forms.ToolStripMenuItem simetricasBtn;
         private System.Windows.Forms.ToolStripMenuItem assimetricasBtn;
         private System.Windows.Forms.Panel body;
-        private System.Windows.Forms.ToolStripMenuItem conclusaoBtn;
         private System.Windows.Forms.ToolStripMenuItem grupoBtn;
-        private System.Windows.Forms.ToolStripMenuItem mikcipherBtn;
     }
 }

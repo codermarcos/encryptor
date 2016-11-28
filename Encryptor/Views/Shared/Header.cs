@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Encryptor.Views.conclusao;
 using Encryptor.Views.criptografias;
 using Encryptor.Views.grupo;
 
@@ -31,15 +30,7 @@ namespace Encryptor.Views.Shared
             new GrupoFrm().Show();
         }
         #endregion
-
-        #region conclusao
-        private void CallConclusaoFrm(object sender, EventArgs e)
-        {
-            _parent.Dispose();
-            new ConclusaoFrm().Show();
-        }
-        #endregion
-
+        
         #region cryptografias
         private void CallAssimetricasFrm(object sender, EventArgs e)
         {
@@ -57,12 +48,6 @@ namespace Encryptor.Views.Shared
         {
             _parent.Dispose();
             new HashFrm().Show(); 
-        }
-
-        private void CallMikcipherFrm(object sender, EventArgs e)
-        {
-            _parent.Dispose();
-            new MikcipherFrm().Show();
         }
         #endregion
 

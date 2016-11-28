@@ -13,18 +13,12 @@ namespace Encryptor.Views.criptografias
         }
 
         private string _type;
-        private File _file;
-
-        private void OpenFile(object sender, EventArgs e)
-        {
-            OpenFile();
-        }
-
+        
         public void Criptografar(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(_file?.Input))
+            if (string.IsNullOrEmpty(inputBox.Text))
             {
-                MessageBox.Show(@"Abra o arquivo primeiro !"); return;
+                MessageBox.Show(@"Digite a entreda para encriptar !"); return;
             }
             if (string.IsNullOrEmpty(_type))
             {
@@ -34,44 +28,13 @@ namespace Encryptor.Views.criptografias
             Encrypt();
         }
 
-        private void Salvar(object sender, EventArgs e)
-        {
-            if (_file == null)
-            {
-                MessageBox.Show(@"Abra o arquivo antes de salvar !"); return;
-            }
-            if (string.IsNullOrEmpty(_file.Output))
-            {
-                MessageBox.Show(@"Criptografe o arquivo antes de salvar !"); return;
-            }
-
-            SaveFile();
-        }
-
         private void Limpar(object sender, EventArgs e)
         {
             _type = null;
-            _file = null;
             rMD5.Checked = false;
             rSHA1.Checked = false;
+            inputBox.Text = string.Empty;
             outputLbl.Text = string.Empty;
-        }
-
-        private void OpenFile()
-        {
-            using (var dialog = new OpenFileDialog
-            {
-                Title = @"Selecione o arquivo a ser Encryptado!",
-                Filter = @"Text Files |*.txt|Encrypted Files |*.crp",
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
-            })
-            {
-                _file = dialog.ShowDialog() == DialogResult.Cancel ? null : new File(dialog.FileName);
-
-                if (_file == null) return;
-
-                outputLbl.Text = _file.Read();
-            }
         }
 
         private void Encrypt()
@@ -79,30 +42,11 @@ namespace Encryptor.Views.criptografias
             switch (_type)
             {
                 case "MD5":
-                    _file.Output = Hash.Encrypt.Md5(_file.Read());
+                    outputLbl.Text = Hash.Encrypt.Md5(inputBox.Text);
                     break;
                 case "SHA1":
-                    _file.Output = Hash.Encrypt.Sha1(_file.Read());
+                    outputLbl.Text = Hash.Encrypt.Sha1(inputBox.Text);
                     break;
-            }
-
-            outputLbl.Text = _file.Output;
-        }
-
-        private void SaveFile()
-        {
-            using (var dialog = new SaveFileDialog()
-            {
-                Title = @"Onde deseja salvar o arquivo!",
-                Filter = @"Encryptor |*.crp",
-                FileName = _file.Name
-            })
-            {
-                if (dialog.ShowDialog() == DialogResult.Cancel) return;
-                _file.Path = dialog.FileName;
-                _file.Save();
-                MessageBox.Show(@"Arquivo salvo com sucesso !");
-                Limpar(null, null);
             }
         }
 

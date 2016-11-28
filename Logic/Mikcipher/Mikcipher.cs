@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Logic.Criptographys
+namespace Logic.Mikcipher
 {
     public class Mikcipher : IDisposable
     {
