@@ -15,31 +15,45 @@ namespace Logic.Mikcipher
 
         public string Encript(string publicKey)
         {
-            var cKey = Functions.HexToString(publicKey);
+            try
+            {
+                var cKey = Functions.HexToString(publicKey);
 
-            var divisor = cKey.IndexOf('|');
-            var pkey = int.Parse(cKey.Substring(0, divisor));
-            var key = int.Parse(cKey.Substring(divisor+1, cKey.Length - divisor - 1 ));
-            var input = Encoding.ASCII.GetBytes(Content);
+                var divisor = cKey.IndexOf('|');
+                var pkey = int.Parse(cKey.Substring(0, divisor));
+                var key = int.Parse(cKey.Substring(divisor + 1, cKey.Length - divisor - 1));
+                var input = Encoding.ASCII.GetBytes(Content);
 
-            return input.Aggregate(string.Empty, (current, c) => current + ((Convert.ToInt16(c)*pkey/key) + " "));
+                return input.Aggregate(string.Empty, (current, c) => current + ((Convert.ToInt16(c) * pkey / key) + " "));
+            }
+            catch
+            {
+                return "NÃO FOI POSSIVEL CODIFICAR VERIFIQUE O PREENCHIMENTO E TENTE NOVAMENTE";
+            }
         }
 
 
         public string Decript(string privatekey)
         {
-            var key = GetKey(privatekey);
-
-            var input = Content.Split(' ');
-
-            var retorno = new byte[input.Length];
-
-            for (var i = 0; i < input.Length; i++)
+            try
             {
-                var result = string.IsNullOrEmpty(input[i]) ? Convert.ToByte(0) : Convert.ToByte(Convert.ToInt16(input[i])/key);
-                retorno[i] = result;
+                var key = GetKey(privatekey);
+
+                var input = Content.Split(' ');
+
+                var retorno = new byte[input.Length];
+
+                for (var i = 0; i < input.Length; i++)
+                {
+                    var result = string.IsNullOrEmpty(input[i]) ? Convert.ToByte(0) : Convert.ToByte(Convert.ToInt16(input[i]) / key);
+                    retorno[i] = result;
+                }
+                return Encoding.ASCII.GetString(retorno);
             }
-            return Encoding.ASCII.GetString(retorno);
+            catch
+            {
+                return "NÃO FOI POSSIVEL DECODIFICAR VERIFIQUE O PREENCHIMENTO E TENTE NOVAMENTE";
+            }
         }
 
         public string GetPublickey(string publicKey, string privateKey)
@@ -61,7 +75,7 @@ namespace Logic.Mikcipher
 
                 if (contador.Length != 2) continue;
                 retorno += Convert.ToInt16(contador[0]) - Convert.ToInt16(contador[1]);
-                contador = string.Empty;                
+                contador = string.Empty;
             }
 
             contador = retorno.Replace("-", string.Empty);
