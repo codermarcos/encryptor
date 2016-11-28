@@ -87,6 +87,11 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logic\Criptographys\Assimetricas.cs" />
+    <Compile Include="Logic\Criptographys\Hash.cs" />
+    <Compile Include="Logic\Criptographys\Simetricas.cs" />
+    <Compile Include="Logic\Functions.cs" />
+    <Compile Include="Logic\Mikcipher\Mikcipher.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -180,12 +185,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Logic\Logic.csproj">
-      <Project>{b0617078-1e55-4b74-9c5a-8a8245a83bf0}</Project>
-      <Name>Logic</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\02.png" />

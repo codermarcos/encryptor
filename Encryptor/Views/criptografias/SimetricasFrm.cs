@@ -55,6 +55,7 @@ namespace Encryptor.Views.criptografias
             _type = null;
             rDES.Checked = false;
             rRINJDAEL.Checked = false;
+            InputBox.Text = string.Empty;
             outputLbl.Text = string.Empty;
             passwordBox.Text = string.Empty; 
             visibiladadeBtn.Checked = false;
